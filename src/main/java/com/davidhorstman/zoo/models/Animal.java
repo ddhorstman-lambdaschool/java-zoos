@@ -1,6 +1,10 @@
 package com.davidhorstman.zoo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table("animals")
@@ -9,6 +13,11 @@ public class Animal {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long animalid;
     private String animaltype;
+
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "animal", allowSetters = true)
+    private Set<ZooAnimal> zoos = new HashSet<>();
+
 
     public Animal() {
     }
@@ -28,4 +37,13 @@ public class Animal {
     public void setAnimaltype(String animaltype) {
         this.animaltype = animaltype;
     }
+
+    public Set<ZooAnimal> getZoos() {
+        return zoos;
+    }
+
+    public void setZoos(Set<ZooAnimal> zoos) {
+        this.zoos = zoos;
+    }
+
 }
