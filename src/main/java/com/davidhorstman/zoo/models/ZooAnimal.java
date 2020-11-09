@@ -7,19 +7,19 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table("zooanimals")
+@Table(name = "zooanimals")
 @IdClass(ZooAnimalId.class)
 public class ZooAnimal implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn("zooid")
+    @JoinColumn(name = "zooid")
     @JsonIgnoreProperties(value = "animals", allowSetters = true)
     private Zoo zoo;
 
     @Id
     @ManyToOne
-    @JoinColumn("animalid")
+    @JoinColumn(name = "animalid")
     @JsonIgnoreProperties(value = "zoos", allowSetters = true)
     private Animal animal;
 

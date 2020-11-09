@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table("zoos")
+@Table(name = "zoos")
 public class Zoo {
 
     @Id
